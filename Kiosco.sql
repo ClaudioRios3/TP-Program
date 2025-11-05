@@ -4,7 +4,8 @@ USE kiosco;
 -- 1. Tabla de usuarios (para login)
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) UNIQUE NOT NULL,
+    username VARCHAR(45) UNIQUE NOT NULL,
+    rol VARCHAR(45) NOT NULL,
     password VARCHAR(255) NOT NULL
 );
 

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from config.database import db
-from routers import auth
+from routers import auth, producto, venta
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -30,5 +30,8 @@ def root():
     return {"message": "Hola, bienvenido a mi API REST"}
 
 # Routers de la API
-# app.include_router(auth.router)
+
+app.include_router(auth.router)
+app.include_router(producto.router)
+app.include_router(venta.router)
 
