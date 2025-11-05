@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-# import datetime
+from datetime import datetime
 
 class DetalleVentaEnDB(BaseModel):
     id_producto: int
@@ -14,7 +14,7 @@ class DetalleVenta(BaseModel):
 
 class Venta(BaseModel):
     id: int
-    # fecha: datetime
+    fecha: datetime
     total: float
     id_usuario: int
 

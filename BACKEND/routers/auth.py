@@ -42,3 +42,7 @@ async def read_users_me(
 @router.get("/admin")
 async def admin_route(current_user: Usuario = Depends(check_admin)):
     return {"msg": f"Hola {current_user.username}, bienvenido!"}
+
+@router.post("/register")
+async def create_user(current_user: Usuario = Depends(check_admin)):
+    return ""

@@ -25,7 +25,7 @@ def get_password_hash(password: str) -> str:
 
 
 async def get_user(username: str) -> Optional[UsuarioEnDB]:
-    query = "SELECT id, username, hashed_password FROM usuarios WHERE username = :username"
+    query = "SELECT id, username, hashed_password, rol FROM usuarios WHERE username = :username"
     row = await db.fetch_one(query, values={"username": username})
     if row:
         return UsuarioEnDB(**row)
@@ -75,6 +75,6 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
     return Usuario(**usuario_db.model_dump())
 
 def check_admin(user: Usuario = Depends(get_current_user)):
-    if user.role != "admin":
+    if user.rol != "admin":
         raise HTTPException(status_code=403, detail="No tiene permisos suficientes")
     return user
