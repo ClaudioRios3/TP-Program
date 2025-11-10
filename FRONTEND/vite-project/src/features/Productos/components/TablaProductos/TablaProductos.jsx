@@ -1,11 +1,11 @@
-import './TablaProductos.module.css'
+import styles from './TablaProductos.module.css'
 
 export function TablaProductos({ productos, onProductoSelect }) {
     return (
-        <div className='table-container'>
+        <div className={styles.tableContainer}>
             <h3>Inventario</h3>
-            <table className="table-products">
-                <thead className="table-header">
+            <table className={styles.productTable}>
+                <thead className={styles.tableHeader}>
                     <tr>
                         <th>Id</th>
                         <th>Nombre</th>
@@ -15,16 +15,16 @@ export function TablaProductos({ productos, onProductoSelect }) {
                         <th>Precio Venta</th>
                     </tr>
                 </thead>
-                <tbody className="table-body">
+                <tbody className={styles.tableBody}>
                     {productos.length === 0 ? (
             <tr>
-              <td colSpan="6" className="table-no-data">
+              <td colSpan="6" className={styles.noData}>
                 No hay productos en la base de datos.
                 </td>
                 </tr>
                 ) : (
                     productos.map((pro) => (
-                        <tr key={pro.id} onDoubleClick={() => onProductoSelect(pro)} className="table-row">
+                        <tr key={pro.id} onDoubleClick={() => onProductoSelect(pro)} className={styles.tableRow}>
                             <td>{pro.nombre}</td>
                             <td>{pro.descripcion}</td>
                             <td>{pro.stock}</td>

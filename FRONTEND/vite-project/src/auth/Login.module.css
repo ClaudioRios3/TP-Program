@@ -1,12 +1,12 @@
-html,
-body {
-  height: 100%;
-  background-color: #f8f9fa;
-}
-
 .form-signin {
-  max-width: 330px;
+  width: 100%; /* w-100 */
+  max-width: 420px; /* Ancho estándar de 'form-signin' */
   padding: 1rem;
+  margin: auto; /* m-auto */
+  min-height: 80vh; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .form-signin .form-floating:focus-within {
@@ -23,4 +23,30 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+
+/* Define el título
+  Absorbe: 'h3', 'mb-3', 'fw-normal', 'text-center'
+*/
+.login-title {
+  margin-bottom: 1rem; /* mb-3 */
+  font-weight: 400; /* fw-normal */
+  text-align: center; /* text-center */
+}
+
+/* Define el botón
+  Absorbe: 'w-100', 'py-2'
+*/
+.login-button {
+  width: 600px; /* w-100 */
+  padding-top: 0.5rem; /* py-2 */
+  padding-bottom: 0.5rem; /* py-2 */
+}
+
+/* Define la alerta
+  (Solo para añadir un margen superior)
+*/
+.login-alert {
+  margin-top: 1rem;
 }

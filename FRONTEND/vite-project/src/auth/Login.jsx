@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
-import "./Login.module.css";
+import styles from "./Login.module.css";
 
 function Login() {
   const { login } = useContext(AuthContext);
@@ -18,14 +18,15 @@ function Login() {
   };
 
   return (
-    <main className="form-signin w-100 m-auto">
+    <main className={styles.formSignin}>
       <br />
       <form onSubmit={handleSubmit}>
-        <h1 className="h3 mb-3 fw-normal text-center">Acceso al sistema</h1>
-        <div className="form-floating">
+        <h3 className={styles.loginTitle}>Acceso al sistema</h3>
+
+        <div className={styles.formFloating}>
           <input
             type="text"
-            className="form-control"
+            className={styles.formControl}
             name="username"
             id="username"
             value={username}
@@ -33,25 +34,28 @@ function Login() {
             placeholder=""
             required
           />
-          <label htmlFor="floatingInput">Nombre de usuario</label>
+          <label htmlFor="username">Nombre de usuario</label>
         </div>
-        <div className="form-floating">
+
+        <div className={styles.formFloating}>
           <input
             type="password"
-            className="form-control"
+            className={styles.formControl}
             name="password"
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <label htmlFor="floatingPassword">Contraseña</label>
+          <label htmlFor="password">Contraseña</label>
         </div>
-        <button className="btn btn-primary w-100 py-2" type="submit">
+
+        <button className={styles.loginButton} type="submit">
           Iniciar sesión
         </button>
       </form>
-      {error && <div className="alert alert-danger">{error}</div>}
+
+      {error && <div className={styles.loginAlert}>{error}</div>}
     </main>
   );
 }
