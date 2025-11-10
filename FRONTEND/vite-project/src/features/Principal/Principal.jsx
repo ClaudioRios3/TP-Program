@@ -1,9 +1,16 @@
 // src/pages/Dashboard.jsx
 import { useState } from 'react';
 import { LayoutDashboard, Package, Users, DollarSign } from 'lucide-react';
+
+// Import de Hooks
+import { useProductos } from '../../hooks/useProductos'; 
+// import { useEmpleados } from '../../hooks/useEmpleados'; 
+// import { useVentas } from '../../hooks/useVentas';
+
+// Import de Componentes
 import TabButton from '../../components/TabButton/TabButton'; // Necesitamos este componente
 
-// 1. Importamos el CONTENIDO de cada pestaña
+// 1. Import del CONTENIDO de cada pestaña
 import EmpleadosTab from '../Empleados/EmpleadosTab';
 import CarritoTab from '../Carrito/CarritoTab';
 import ProductosTab from '../Productos/ProductosTab';
@@ -11,7 +18,16 @@ import VentasTab from '../Ventas/VentasTab';
 
 // --- COMPONENTE PRINCIPAL ---
 function Principal() {
-  // 1. Definimos las pestañas como datos
+
+  // 1. Consumimos los hooks necesarios
+  const { 
+    productos,
+    createProducto,
+    deleteProducto 
+    // (necesitarás 'updateProducto' también)
+  } = useProductos();
+
+  // 2. Definimos las pestañas como datos
   const tabs = [
     { id: 'carrito', label: 'Carrito', icon: <LayoutDashboard size={18} /> },
     { id: 'productos', label: 'Productos', icon: <Package size={18} /> },
@@ -19,14 +35,20 @@ function Principal() {
     { id: 'ventas', label: 'Ventas', icon: <DollarSign size={18} /> },
   ];
 
-  // 2. Estado para la pestaña activa
+  // 3. Estado para la pestaña activa
   const [activeTab, setActiveTab] = useState(tabs[0].id);
 
   // 3. Objeto "mapa" para el contenido
   //    ¡Aquí conectamos los componentes reales!
   const tabContent = {
     carrito: <CarritoTab />,
-    productos: <ProductosTab />,
+    productos: (
+          <ProductosTab 
+            productos={productos} 
+            createProducto={createProducto}
+            deleteProducto={deleteProducto}
+            // reloadProductos={reloadProductos}
+          />),
     empleados: <EmpleadosTab />,
     ventas: <VentasTab />,
   };

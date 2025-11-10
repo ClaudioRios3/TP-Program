@@ -1,5 +1,5 @@
 import { useState } from 'react'; // Faltaba importar useState
-import "./FormProductos.css";
+import "./FormProductos.module.css";
 
 // 1. Recibe la función 'onSubmit' y un 'producto' para editar (opcional)
 export function FormsProductos({ onSubmit, onClear, productoParaEditar }) {

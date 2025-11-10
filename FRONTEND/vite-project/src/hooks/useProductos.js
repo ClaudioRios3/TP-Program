@@ -6,17 +6,11 @@ export const useProductos = () => {
     const { authFetch, logout } = useContext(AuthContext);
     const [productos, setProductos] = useState([]);
     const [producto, setProducto] = useState({});
-    const [isLoadingProductos, setIsLoadingProductos] = useState(false);
-    const [errorProductos, setErrorProductos] = useState(null);
 
-
-    // B. Usamos el hook genérico
-    // Renombramos 'isLoading' y 'error' para que sean específicos
-
+    // Fucniones para interactuar con la API
 
     // Función para OBTENER todos los productos (GET)
-    const getAllProductos = async () => {
-        setIsLoadingProductos(true);
+    const getAllProductos = useCallback (async () => {
         const response = await authFetch("/productos");
         if (response.status === 401) {
             logout();
@@ -26,8 +20,7 @@ export const useProductos = () => {
         if (data) {
             setProductos(data);
         }
-        setIsLoadingProductos(false);
-    };
+    }, [authFetch, logout]);
 
     // Effect para cargar los productos al inicio
     useEffect(() => {
@@ -36,7 +29,6 @@ export const useProductos = () => {
 
     // Función para OBTENER un producto por ID (GET)
     const getProductoById = async (id) => {
-        setIsLoadingProductos(true);
         const response = await authFetch(`/producto/${id}`);
         if (response.status === 401) {
             logout();
@@ -46,7 +38,6 @@ export const useProductos = () => {
         if (data) {
             setProducto(data);
         }
-        setIsLoadingProductos(false);
     }
 
     // Función para CREAR un producto (POST)

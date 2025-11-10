@@ -1,4 +1,4 @@
-import './TablaProductos.css'
+import './TablaProductos.module.css'
 
 export function TablaProductos({ productos, onProductoSelect }) {
     return (
