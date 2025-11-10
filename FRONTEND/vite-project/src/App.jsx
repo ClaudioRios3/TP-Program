@@ -8,6 +8,7 @@ import { AuthProvider } from "./auth/AuthContext";
 import Login from "./auth/Login";
 import PrivateRoute from "./auth/PrivateRoute";
 import Principal from "./features/Principal/Principal";
+
 function App() {
   return (
     <AuthProvider>
@@ -15,14 +16,14 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/login" element={<Login />} />
-          {/* <Route
-            path="/main"
+          <Route
+            path="/dashboard"
             element={
               <PrivateRoute>
                 <Principal />
               </PrivateRoute>
             }
-          /> */}
+          />
         </Routes>
       </Router>
     </AuthProvider>

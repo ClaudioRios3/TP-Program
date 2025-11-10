@@ -16,7 +16,7 @@ export function TablaProductos({ productos, onProductoSelect }) {
                     </tr>
                 </thead>
                 <tbody className="table-body">
-                    {products.length === 0 ? (
+                    {productos.length === 0 ? (
             <tr>
               <td colSpan="6" className="table-no-data">
                 No hay productos en la base de datos.

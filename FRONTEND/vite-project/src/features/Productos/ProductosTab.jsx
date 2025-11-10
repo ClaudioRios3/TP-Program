@@ -1,57 +1,51 @@
 import { useProductos } from '../../hooks/useProductos'; // 1. Importas tu hook
-import FormsProductos from './components/FormProductos/FormsProductos'; 
-import TablaProductos from './components/TablaProductos/TablaProductos';
-
+import { FormsProductos } from './components/FormProductos/FormsProductos'; // 2. Importas componentes
+import { TablaProductos } from './components/TablaProductos/TablaProductos'; // 2. Importas componentes
 
 const ProductosTab = () => {
   
-  // 2. ¡Consumes el hook!
+  // 3. ¡Consumes el hook!
   const { 
     productos,
-    producto,
+    isLoadingProductos,
+    errorProductos,
     createProducto,
-    getProductoById,
-    getAllProductos,
-    isLoadingProductos
+    deleteProducto 
+    // (necesitarás 'updateProducto' también)
   } = useProductos();
 
-  // 3. Manejas los estados de UI
+  // 4. Manejas los estados de UI
   if (isLoadingProductos) {
     return <div>Cargando productos...</div>;
   }
+  
+  if (errorProductos) {
+    return <div>Error: {errorProductos}</div>;
+  }
 
-  // 4. Función para el formulario (ejemplo)
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const nombre = e.target.elements.nombre.value;
-    const exito = await createProducto({ nombre: nombre, precio: 100 });
-    
-    if (exito) {
-      alert('Producto creado!');
-      e.target.reset();
-    } else {
-      alert('Error al crear el producto');
-    }
-  };
+  // (Aquí iría la lógica para seleccionar un producto de la tabla para editar)
+  const handleSelectProducto = (producto) => {
+    console.log("Seleccionado:", producto);
+    // (Aquí guardarías el producto seleccionado en un estado local)
+  }
 
-  const handleAddProduct = (newProduct) => {
-        const productWithId = { ...newProduct, id: Date.now() }; // Simula un ID único
-        setProducts([...products, productWithId]);
-        // Aquí también harías la llamada a tu API o BD para guardarlo
-    };
-
-    return (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Columna para el formulario */}
-            <div className="lg:col-span-1">
-                <FormsProductos onAddProduct={handleAddProduct} />
-            </div>
-            {/* Columna para la tabla */}
-            <div className="lg:col-span-2">
-                <ProductTable products={products} />
-            </div>
-        </div>
-    );
+  return (
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Columna para el formulario */}
+          <div className="lg:col-span-1">
+              {/* 5. Pasas la función 'createProducto' del hook al formulario */}
+              <FormsProductos onSubmit={createProducto} />
+          </div>
+          
+          {/* Columna para la tabla */}
+          <div className="lg:col-span-2">
+              <TablaProductos 
+                productos={productos} 
+                onProductoSelect={handleSelectProducto} // 6. Pasas el handler
+              />
+          </div>
+      </div>
+  );
 };
 
 export default ProductosTab;

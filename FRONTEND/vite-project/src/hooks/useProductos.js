@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
 import { AuthContext } from '../auth/AuthContext';
 
 export const useProductos = () => {
@@ -22,7 +22,7 @@ export const useProductos = () => {
             logout();
             return;
         }
-        const data = await response.JSON();
+        const data = await response.json();
         if (data) {
             setProductos(data);
         }
@@ -42,7 +42,7 @@ export const useProductos = () => {
             logout();
             return;
         }
-        const data = await response.JSON();
+        const data = await response.json();
         if (data) {
             setProducto(data);
         }
@@ -57,7 +57,7 @@ export const useProductos = () => {
             body: JSON.stringify(nuevoProducto),
         });
 
-        const data = await response.JSON();
+        const data = await response.json();
 
         if (data) {
             // Si fue exitoso, recargamos la lista
@@ -77,7 +77,7 @@ export const useProductos = () => {
             body: JSON.stringify({ id }),
         });
 
-        const data = await response.JSON();
+        const data = await response.json();
 
         if (data) {
             // Si fue exitoso, recargamos la lista

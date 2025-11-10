@@ -13,3 +13,5 @@ export const TabButton = ({ label, isActive, onClick }) => {
         </button>
     );
 };
+
+export default TabButton;

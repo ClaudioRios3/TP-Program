@@ -1,36 +1,51 @@
+import { useState } from 'react'; // Faltaba importar useState
 import "./FormProductos.css";
 
-export function FormsProductos({ productos, categorias }) {
+// 1. Recibe la función 'onSubmit' y un 'producto' para editar (opcional)
+export function FormsProductos({ onSubmit, onClear, productoParaEditar }) {
+    
+    // 2. Estado local del formulario
+    const [nombre, setNombre] = useState('');
+    const [descripcion, setDescripcion] = useState('');
+    const [precio, setPrecio] = useState('');
+    const [precio_compra, setPrecioCompra] = useState('');
+    const [precio_venta, setPrecioVenta] = useState('');
+    const [stock, setStock] = useState('');
+    // (Faltaría lógica para cargar el 'productoParaEditar' en el form)
 
-    const [nombre, setNombre] = useState([]);
-    const [precio, setPrecio] = useState([]);
-    const [descripcion, setDescripcion] = useState([]);
-    const [stock, setStock] = useState([]);
-    const [categoria, setCategoria] = useState([]);
+    // 3. El handleSubmit AHORA LLAMA A LA PROP
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        const newProduct = {
+        // 4. Llama a la función que vino del hook (createProducto)
+        await onSubmit({
             nombre,
-            precio,
             descripcion,
-            stock
+            precio: parseFloat(precio) || 0,
+            stock: parseInt(stock) || 0,
+            precio_compra: parseFloat(precio_compra) || 0,
+            precio_venta: parseFloat(precio_venta) || 0,
+        });
+        
+        // Limpiamos el form después de enviar
+        handleClear();
     };
-        console.log('Producto a agregar:', newProduct);
-        // Aquí iría la lógica para enviar el nuevo producto a la API o base de datos
-    }
-    const handleCancel = async (e) => {
-        e.preventDefault();
+
+    const handleClear = () => {
         setNombre('');
-        setPrecio('');
         setDescripcion('');
+        setPrecio('');
+        setPrecioCompra('');
+        setPrecioVenta('');
         setStock('');
-    }   
+    };   
 
     return (
         <div className="form-container">
             <h3 className="form-title">Agregar producto</h3>
             <form className='form-products' onSubmit={handleSubmit}>
+                
+                {/*--- Campo Nombre del producto ---*/}
                 <div className="form-group">
                     <label htmlFor="nombreProducto" className="form-label">Nombre</label>
                     <input 
@@ -43,6 +58,7 @@ export function FormsProductos({ productos, categorias }) {
                     />
                 </div>
 
+                {/*--- Campo Descripción del producto ---*/}
                 <div className="form-group">
                     <label htmlFor="descripcionProducto" className="form-label">Descripción</label>
                     <input 
@@ -55,6 +71,7 @@ export function FormsProductos({ productos, categorias }) {
                     />
                 </div>
 
+                {/*--- Campo Precio del producto ---*/}
                 <div className="form-group">
                     <label htmlFor="precioProducto" className="form-label">Precio</label>
                     <input 
@@ -69,6 +86,30 @@ export function FormsProductos({ productos, categorias }) {
                     />
                 </div>
 
+                {/* Precio Compra */}
+                <div className="form-group">
+                    <label htmlFor="precioCompra" className="form-label">Precio Compra</label>
+                    <input 
+                        type="number" 
+                        id="precioCompra" 
+                        value={precio_compra} 
+                        onChange={(e) => setPrecioCompra(e.target.value)}
+                        className="form-input"
+                    />
+                </div>
+                {/* Precio Venta */}
+                <div className="form-group">
+                    <label htmlFor="precioVenta" className="form-label">Precio Venta</label>
+                    <input 
+                        type="number" 
+                        id="precioVenta" 
+                        value={precio_venta} 
+                        onChange={(e) => setPrecioVenta(e.target.value)}
+                        className="form-input"
+                    />
+                </div>
+
+                {/*--- Campo Stock del producto ---*/}
                 <div className="form-group">
                     <label htmlFor="stockProducto" className="form-label">Stock</label>
                     <input 
@@ -83,7 +124,8 @@ export function FormsProductos({ productos, categorias }) {
                     />
                 </div>
 
-                <div className="form-group">
+                {/*--- Campo Categoría del producto ---*/}
+                {/* <div className="form-group">
                     <label htmlFor="categoriaProductos" className="form-label">Categoría</label>
                     {productos.map((item) => (
                         <select 
@@ -104,16 +146,19 @@ export function FormsProductos({ productos, categorias }) {
                             }
                         </select>
                     ))}
-                </div>
+                </div> */}
 
                 <div className="form-buttons-group">
                     <button type="submit" className="form-button form-button-submit">Agregar</button>
                     {/* <button type="button" onClick={handleCancel} className="form-button form-button-cancel">Cancelar</button> */}
                     <button type="button" onClick={handleClear} className="form-button form-button-secondary">Limpiar</button>
-                    <button type="button" onClick={handleUpdate} className="form-button form-button-secondary">Actualizar</button>
-                    <button type="button" onClick={handleDelete} className="form-button form-button-danger">Eliminar</button>
+                    {/* <button type="button" onClick={handleUpdate} className="form-button form-button-secondary">Actualizar</button> */}
+                    {/* <button type="button" onClick={handleDelete} className="form-button form-button-danger">Eliminar</button> */}
                 </div>
             </form>
         </div>
     )
 }
+
+// Exporta por defecto si es necesario, aunque tu importación usa 'export function'
+// export default FormsProductos;

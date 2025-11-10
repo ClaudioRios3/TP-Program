@@ -13,3 +13,5 @@ const CarritoTab = () => {
         </div>
     );
 };
+
+export default CarritoTab;
