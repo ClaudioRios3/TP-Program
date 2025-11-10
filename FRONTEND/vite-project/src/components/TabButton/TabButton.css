@@ -1,0 +1,62 @@
+/* --- Botón de Pestaña (Base) --- */
+.tab-button {
+  /* Estilos flex */
+  display: flex; /* flex */
+  align-items: center; /* items-center */
+  gap: 0.5rem; /* gap-2 */
+
+  /* Espaciado y tipografía */
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem; /* px-4 */
+  padding-top: 0.75rem; /* py-3 */
+  padding-bottom: 0.75rem; /* py-3 */
+  font-weight: 500; /* font-medium */
+  font-size: 0.875rem; /* text-sm */
+
+  /* Borde inferior */
+  border-bottom-width: 2px; /* border-b-2 */
+
+  /* Transición */
+  transition-property: all; /* transition-all */
+  transition-duration: 150ms; /* duration-150 */
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* ease-in-out */
+
+  /* Reseteo de estilos de botón */
+  background-color: transparent;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  cursor: pointer;
+}
+
+/* --- Estado Inactivo (por defecto) --- */
+.tab-button {
+  border-color: transparent; /* border-transparent */
+  color: #6b7280; /* text-gray-500 */
+}
+
+/* --- Estado Inactivo (Hover) --- */
+.tab-button:hover {
+  border-color: #d1d5db; /* hover:border-gray-300 */
+  color: #1f2937; /* hover:text-gray-800 */
+}
+
+/* --- Estado Activo (.is-active) --- */
+.tab-button.is-active {
+  border-color: #2563eb; /* border-blue-600 */
+  color: #2563eb; /* text-blue-600 */
+}
+
+/* --- Estado Activo (Hover) --- */
+/* (Nos aseguramos de que mantenga sus estilos activos en el hover) */
+.tab-button.is-active:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+/* --- Estilo de Focus --- */
+.tab-button:focus {
+  outline: none; /* focus:outline-none */
+  /* (Opcional) Añadir un anillo de foco visible para accesibilidad */
+  /* box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); */
+}
