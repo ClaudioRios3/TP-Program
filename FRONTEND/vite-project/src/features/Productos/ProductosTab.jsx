@@ -1,22 +1,21 @@
 import { useState } from 'react';
 
-import { FormsProductos } from './components/FormProductos/FormsProductos'; // 2. Importas componentes
-import { TablaProductos } from './components/TablaProductos/TablaProductos'; // 2. Importas componentes
+import { FormsProductos } from './components/FormProductos/FormsProductos'; 
+import { TablaProductos } from './components/TablaProductos/TablaProductos'; 
 
 const ProductosTab = ({
   productos,
   createProducto,
-  deleteProducto
+  deleteProducto,
+  updateProducto
 }) => {
 
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 
-  // 4. Handler para seleccionar un producto de la tabla
+  // Handler para seleccionar un producto de la tabla
   const handleSelectProducto = (producto) => {
     setProductoSeleccionado(producto);
     // Aquí puedes hacer que el formulario se llene con 'productoSeleccionado'
-
-    console.log("Producto seleccionado", producto)
   };
 
   const handleClearSelection = () => {
@@ -26,7 +25,13 @@ const ProductosTab = ({
   return (
     <div>
       <div>
-        <FormsProductos onSubmit={createProducto} />
+        <FormsProductos 
+          onSubmit={createProducto} 
+          onClear={handleClearSelection}
+          productoParaEditar={productoSeleccionado} 
+          onDelete={deleteProducto}
+          onUpdate={updateProducto}
+        />
       </div>
 
       <div>

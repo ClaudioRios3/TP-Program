@@ -12,81 +12,86 @@ export const useProductos = () => {
     // Función para OBTENER todos los productos (GET)
     const getAllProductos = useCallback(async () => {
         const response = await authFetch("/productos");
-        if (response.status === 401) {
-            logout();
-            return;
-        }
+        if (response.status === 401) return logout();
         const data = await response.json();
-        if (data) {
-            setProductos(data);
-        }
+        if (response.ok) setProductos(data);
     }, [authFetch, logout]);
 
     // Effect para cargar los productos al inicio
     useEffect(() => {
         getAllProductos();
-    }, [getAllProductos]); // Se ejecuta 1 vez
+    }, [getAllProductos]);
 
     // Función para OBTENER un producto por ID (GET)
-    const getProductoById = async (id) => {
-        const response = await authFetch(`/producto/${id}`);
-        if (response.status === 401) {
-            logout();
-            return;
-        }
+const getProductoById = useCallback(async (id) => {
+        const response = await authFetch(`/productos/${id}`); 
+        if (response.status === 401) return logout();
         const data = await response.json();
-        if (data) {
-            setProducto(data);
-        }
-    }
+        if (response.ok) setProducto(data);
+    }, [authFetch, logout]);
 
-    // Función para CREAR un producto (POST)
     const createProducto = async (nuevoProducto) => {
-        const response = await authFetch("/producto", {
+        const response = await authFetch("/productos", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(nuevoProducto),
         });
+        if (response.status === 401) return logout();
 
         const data = await response.json();
-
         if (!response.ok) {
-            alert(data.detail);
+            alert(data.detail || "Error al crear");
             return false;
         }
+        getAllProductos(); 
+        return true;
+    };
 
-        setProductos(data);
+    // --- FUNCIÓN 'UPDATE' para Actualizar un producto ---
+    const updateProducto = async (id, productoActualizado) => {
+        const response = await authFetch(`/productos/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(productoActualizado),
+        });
+        if (response.status === 401) return logout();
+
+        const data = await response.json();
+        if (!response.ok) {
+            alert(data.detail || "Error al actualizar");
+            return false;
+        }
         getAllProductos();
-        return true;    
+        return true;
     }
 
     // Función para BORRAR un producto (DELETE)
-    const deleteProducto = async (id) => {
-        const response = await authFetch(`/producto/${id}`, {
+    const deleteProducto = useCallback(async (id) => {
+        const response = await authFetch(`/productos/${id}`, {
             method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id }),
         });
+        if (response.status === 401) return logout();
 
         const data = await response.json();
-
-        if (data) {
-            // Si fue exitoso, recargamos la lista
-            getAllProductos();
-            return true; // Devolvemos éxito
+        if (!response.ok) {
+            alert(data.detail || "Error al eliminar");
+            return false;
         }
-        alert(data.detail);
-        return false; // Devolvemos fracaso
-    }
+        getAllProductos(); // Recargar lista
+        return true;
+    }, [authFetch, logout, getAllProductos]);
+
+
 
 
     // G. Devolvemos todo lo que el componente necesita
     return {
         productos,
         producto,
-        getAllProductos, // Para refrescar manualmente
+        getAllProductos,
         getProductoById,
         createProducto,
+        updateProducto,
         deleteProducto,
     };
 };

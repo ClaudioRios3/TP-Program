@@ -1,8 +1,15 @@
 import { useState } from 'react'; // Faltaba importar useState
 import styles from "./FormProductos.module.css";
 
+
 // 1. Recibe la función 'onSubmit' y un 'producto' para editar (opcional)
-export function FormsProductos({ onSubmit, onClear, productoParaEditar }) {
+export function FormsProductos({ 
+    onSubmit, 
+    onClear, 
+    productoParaEditar, 
+    onDelete, 
+    onUpdate
+}) {
     
     // 2. Estado local del formulario
     const [nombre, setNombre] = useState('');

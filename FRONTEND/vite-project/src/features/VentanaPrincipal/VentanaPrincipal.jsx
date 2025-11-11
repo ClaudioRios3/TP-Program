@@ -21,13 +21,11 @@ import VentasTab from '../Ventas/VentasTab';
 function VentanaPrincipal() {
 
   // 1. Consumimos los hooks necesarios
-  const { 
+ const { 
       productos,
-      producto,
-      getAllProductos,
-      getProductoById,
       createProducto,
-      deleteProducto
+      deleteProducto,
+      updateProducto
     } = useProductos();
 
   // 2. Definimos las pestañas como datos
@@ -49,8 +47,7 @@ function VentanaPrincipal() {
             productos={productos} 
             createProducto={createProducto}
             deleteProducto={deleteProducto}
-            
-            // reloadProductos={reloadProductos}
+            updateProducto={updateProducto}
           />),
     empleados: <EmpleadosTab />,
     ventas: <VentasTab />,
