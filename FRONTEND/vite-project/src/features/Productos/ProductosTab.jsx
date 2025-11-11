@@ -15,6 +15,8 @@ const ProductosTab = ({
   const handleSelectProducto = (producto) => {
     setProductoSeleccionado(producto);
     // Aquí puedes hacer que el formulario se llene con 'productoSeleccionado'
+
+    console.log("Producto seleccionado", producto)
   };
 
   const handleClearSelection = () => {
@@ -30,7 +32,7 @@ const ProductosTab = ({
       <div>
         <TablaProductos
           productos={productos}
-          onProductoSelect={handleSelectProducto} // 6. Pasas el handler
+          onProductoSelect={handleSelectProducto}
         />
       </div>
     </div>

@@ -21,7 +21,7 @@ export function FormsProductos({ onSubmit, onClear, productoParaEditar }) {
         await onSubmit({
             nombre,
             descripcion,
-            precio: parseFloat(precio) || 0,
+            // precio: parseFloat(precio) || 0,
             stock: parseInt(stock) || 0,
             precio_compra: parseFloat(precio_compra) || 0,
             precio_venta: parseFloat(precio_venta) || 0,

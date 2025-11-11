@@ -5,8 +5,8 @@ import styles from './VentanaPrincipal.module.css';
 
 // Import de Hooks
 import { useProductos } from '../../hooks/useProductos'; 
-import { useEmpleados } from '../../hooks/useEmpleados'; 
-import { useVentas } from '../../hooks/useVentas';
+// import { useEmpleados } from '../../hooks/useEmpleados'; 
+// import { useVentas } from '../../hooks/useVentas';
 
 // Import de Componentes
 import TabButton from '../../components/TabButton/TabButton'; // Necesitamos este componente

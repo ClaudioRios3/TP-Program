@@ -10,7 +10,7 @@ export const useProductos = () => {
     // Fucniones para interactuar con la API
 
     // Función para OBTENER todos los productos (GET)
-    const getAllProductos = useCallback (async () => {
+    const getAllProductos = useCallback(async () => {
         const response = await authFetch("/productos");
         if (response.status === 401) {
             logout();
@@ -42,7 +42,7 @@ export const useProductos = () => {
 
     // Función para CREAR un producto (POST)
     const createProducto = async (nuevoProducto) => {
-        const response = await authFetch("/producto/add", {
+        const response = await authFetch("/producto", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(nuevoProducto),
@@ -50,14 +50,14 @@ export const useProductos = () => {
 
         const data = await response.json();
 
-        if (data) {
-            // Si fue exitoso, recargamos la lista
-            setProducto(data);
-            getAllProductos();
-            return true; // Devolvemos éxito
+        if (!response.ok) {
+            alert(data.detail);
+            return false;
         }
-        alert(data.detail);
-        return false; // Devolvemos fracaso
+
+        setProductos(data);
+        getAllProductos();
+        return true;    
     }
 
     // Función para BORRAR un producto (DELETE)
