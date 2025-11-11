@@ -1,0 +1,42 @@
+/* --- Contenedor de página completa --- */
+.mainPageContainer {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: transparent;
+    box-sizing: border-box;
+}
+
+/* --- Tarjeta principal que contiene todo --- */
+.tabContainer {
+    display: flex;
+    flex-direction: column;
+    width: 60rem;
+    height: 85vh;
+    background-color: black;
+    border-radius: 0.5rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    color: black;
+}
+
+/* --- Barra de navegación de pestañas --- */
+.tabNav {
+    display: flex;
+    background-color: #f9fafb;
+    border-bottom: 3px solid #e5e7eb;
+    flex-shrink: 0;
+    overflow-x: auto;
+}
+
+/* --- Área de contenido principal (donde se muestra la info) --- */
+.tabContent {
+    padding: 1.5rem;
+    background-color: #cccccc;
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: auto;
+}

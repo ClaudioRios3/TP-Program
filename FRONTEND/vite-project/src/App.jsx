@@ -7,7 +7,7 @@ import {
 import { AuthProvider } from "./auth/AuthContext";
 import Login from "./auth/Login";
 import PrivateRoute from "./auth/PrivateRoute";
-import Principal from "./features/Principal/Principal";
+import VentanaPrincipal from "./features/VentanaPrincipal/VentanaPrincipal";
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
             path="/dashboard"
             element={
               <PrivateRoute>
-                <Principal />
+                <VentanaPrincipal />
               </PrivateRoute>
             }
           />

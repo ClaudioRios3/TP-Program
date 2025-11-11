@@ -1,88 +1,84 @@
 /* --- Contenedor Principal --- */
-.inventory-container {
-  padding: 1rem; /* p-4 */
-  background-color: #ffffff; /* bg-white */
-  border-radius: 0.5rem; /* rounded-lg */
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow */
-  border: 1px solid #e5e7eb; /* border border-gray-200 */
-  overflow-x: auto; /* overflow-x-auto */
+.tableContainer {
+  padding: 1rem;
+  padding-top: 0rem; 
+  background-color: #ffffff; 
+  border-radius: 0.5rem; 
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); 
+  border: 1px solid #e5e7eb; 
+  overflow-x: auto;
+  margin-top: 1rem;
 }
 
 /* --- Título --- */
-.inventory-title {
-  font-size: 1.125rem; /* text-lg */
-  font-weight: 600; /* font-semibold */
-  margin-bottom: 1rem; /* mb-4 */
-  color: #1f2937; /* text-gray-800 */
+.tableTitle {
+  font-size: 1.125rem; 
+  font-weight: 600; 
+  margin-bottom: 1rem; 
+  color: #1f2937; 
 }
 
 /* --- Tabla --- */
-.inventory-table {
-  min-width: 100%; /* min-w-full */
+.productTable {
+  min-width: 100%; 
   /* 'divide-y' se maneja en el thead y tbody */
-  border-collapse: collapse; /* Asegura que los bordes se combinen */
+  border-collapse: collapse; 
 }
 
 /* --- Encabezado de la Tabla --- */
-.table-header {
-  background-color: #f9fafb; /* bg-gray-50 */
+.tableHeader {
+  background-color: #f9fafb; 
 }
 
-.table-header-cell {
-  padding-left: 1.5rem; /* px-6 */
-  padding-right: 1.5rem; /* px-6 */
-  padding-top: 0.75rem; /* py-3 */
-  padding-bottom: 0.75rem; /* py-3 */
-  text-align: left; /* text-left */
-  font-size: 0.75rem; /* text-xs */
-  font-weight: 500; /* font-medium */
-  color: #6b7280; /* text-gray-500 */
-  text-transform: uppercase; /* uppercase */
-  letter-spacing: 0.05em; /* tracking-wider */
+.tableHeaderCell {
+  text-align: left; 
+  font-size: 0.75rem; 
+  font-weight: 500; 
+  color: #6b7280; 
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 3px solid #e5e7eb;
 }
 
 /* --- Cuerpo de la Tabla --- */
-.table-body {
-  background-color: #ffffff; /* bg-white */
+.tableBody {
+  background-color: #ffffff;
 }
 
 /* Esto simula 'divide-y divide-gray-200' para las filas */
-.table-body tr:not(:first-child) {
-  border-top: 1px solid #e5e7eb;
+.tableBody tr:not(:first-child) {
+  border: 1px solid #e5e7eb;
+}
+
+.tableBody tr:is(:first-child) {
+  border: 1px solid #e5e7eb;
+  border-top: none;
+  
+}
+
+
+.tableRow:is(:nth-child(even)) {
+  background-color: #ebebeb; 
 }
 
 /* Fila de la tabla con efecto hover */
-.table-row:hover {
-  background-color: #f9fafb; /* hover:bg-gray-50 */
+.tableRow:hover {
+  background-color: rgba(0, 0, 0, 0.226); 
 }
 
 /* --- Celdas de la Tabla (Estilos base) --- */
-.table-cell {
-  padding-left: 1.5rem; /* px-6 */
-  padding-right: 1.5rem; /* px-6 */
-  padding-top: 1rem; /* py-4 */
-  padding-bottom: 1rem; /* py-4 */
-  white-space: nowrap; /* whitespace-nowrap */
-  font-size: 0.875rem; /* text-sm */
-  color: #6b7280; /* text-gray-500 (para el ID) */
-}
-
-/* Estilos específicos para celdas */
-.table-cell.product-name {
-  font-weight: 500; /* font-medium */
-  color: #111827; /* text-gray-900 */
-}
-
-.table-cell.product-price {
-  color: #374151; /* text-gray-700 */
+.tableCell {
+  white-space: nowrap;
+  font-size: 0.875rem; 
+  color: #6b7280; 
 }
 
 /* --- Celda de "No hay productos" --- */
-.empty-state-cell {
-  padding-left: 1.5rem; /* px-6 */
-  padding-right: 1.5rem; /* px-6 */
-  padding-top: 1rem; /* py-4 */
-  padding-bottom: 1rem; /* py-4 */
-  text-align: center; /* text-center */
-  color: #6b7280; /* text-gray-500 */
+.emptyStateCell {
+  padding-left: 1.5rem; 
+  padding-right: 1.5rem; 
+  padding-top: 1rem; 
+  padding-bottom: 1rem;
+  text-align: center; 
+  color: #6b7280; 
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react'; // Faltaba importar useState
-import "./FormProductos.module.css";
+import styles from "./FormProductos.module.css";
 
 // 1. Recibe la función 'onSubmit' y un 'producto' para editar (opcional)
 export function FormsProductos({ onSubmit, onClear, productoParaEditar }) {
@@ -38,15 +38,23 @@ export function FormsProductos({ onSubmit, onClear, productoParaEditar }) {
         setPrecioCompra('');
         setPrecioVenta('');
         setStock('');
-    };   
+    };
+
+    const handleUpdate = (e) => {
+        e.preventDefault();
+    }
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+    }
 
     return (
-        <div className="form-container">
-            <h3 className="form-title">Agregar producto</h3>
+        <div className={styles.formContainer}>
+            <h3 className="form-title">Productos</h3>
             <form className='form-products' onSubmit={handleSubmit}>
                 
                 {/*--- Campo Nombre del producto ---*/}
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label htmlFor="nombreProducto" className="form-label">Nombre</label>
                     <input 
                         type="text" 
@@ -54,12 +62,12 @@ export function FormsProductos({ onSubmit, onClear, productoParaEditar }) {
                         placeholder="Ej: Manzana"
                         value={nombre} 
                         onChange={(e) => setNombre(e.target.value)}
-                        className="form-input"
+                        className={styles.formInput}
                     />
                 </div>
 
                 {/*--- Campo Descripción del producto ---*/}
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label htmlFor="descripcionProducto" className="form-label">Descripción</label>
                     <input 
                         type="text"
@@ -67,12 +75,12 @@ export function FormsProductos({ onSubmit, onClear, productoParaEditar }) {
                         placeholder="Descripción"
                         value={descripcion}
                         onChange={(e) => setDescripcion(e.target.value)}
-                        className="form-input"
+                        className={styles.formInput}
                     />
                 </div>
 
                 {/*--- Campo Precio del producto ---*/}
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label htmlFor="precioProducto" className="form-label">Precio</label>
                     <input 
                         type="number" 
@@ -82,35 +90,35 @@ export function FormsProductos({ onSubmit, onClear, productoParaEditar }) {
                         onChange={(e) => setPrecio(e.target.value)}
                         min="0"
                         step="0.01"
-                        className="form-input"
+                        className={styles.formInput}
                     />
                 </div>
 
                 {/* Precio Compra */}
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label htmlFor="precioCompra" className="form-label">Precio Compra</label>
                     <input 
                         type="number" 
                         id="precioCompra" 
                         value={precio_compra} 
                         onChange={(e) => setPrecioCompra(e.target.value)}
-                        className="form-input"
+                        className={styles.formInput}
                     />
                 </div>
                 {/* Precio Venta */}
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label htmlFor="precioVenta" className="form-label">Precio Venta</label>
                     <input 
                         type="number" 
                         id="precioVenta" 
                         value={precio_venta} 
                         onChange={(e) => setPrecioVenta(e.target.value)}
-                        className="form-input"
+                        className={styles.formInput}
                     />
                 </div>
 
                 {/*--- Campo Stock del producto ---*/}
-                <div className="form-group">
+                <div className={styles.formGroup}>
                     <label htmlFor="stockProducto" className="form-label">Stock</label>
                     <input 
                         type="number"
@@ -120,18 +128,18 @@ export function FormsProductos({ onSubmit, onClear, productoParaEditar }) {
                         onChange={(e) => setStock(e.target.value)}
                         min="0"
                         step="1"
-                        className="form-input"
+                        className={styles.formInput}
                     />
                 </div>
 
                 {/*--- Campo Categoría del producto ---*/}
-                {/* <div className="form-group">
+                {/* <div className={styles.formGroup}>
                     <label htmlFor="categoriaProductos" className="form-label">Categoría</label>
                     {productos.map((item) => (
                         <select 
                             name="categoria" 
                             id="categoriaProductos" 
-                            className="form-select"
+                            className={styles.formInput}
                             value={categoria}
                             onChange={(e) => setCategoria(e.target.value)}
                         >
@@ -148,12 +156,11 @@ export function FormsProductos({ onSubmit, onClear, productoParaEditar }) {
                     ))}
                 </div> */}
 
-                <div className="form-buttons-group">
-                    <button type="submit" className="form-button form-button-submit">Agregar</button>
-                    {/* <button type="button" onClick={handleCancel} className="form-button form-button-cancel">Cancelar</button> */}
-                    <button type="button" onClick={handleClear} className="form-button form-button-secondary">Limpiar</button>
-                    {/* <button type="button" onClick={handleUpdate} className="form-button form-button-secondary">Actualizar</button> */}
-                    {/* <button type="button" onClick={handleDelete} className="form-button form-button-danger">Eliminar</button> */}
+                <div className={styles.formButtons}>
+                    <button type="submit" className={styles.formButton}>Agregar</button>
+                    <button type="button" onClick={handleClear} className={styles.formButton}>Limpiar</button>
+                    <button type="button" onClick={handleUpdate} className={styles.formButton}>Actualizar</button>
+                    <button type="button" onClick={handleDelete} className={styles.formButton}>Eliminar</button>
                 </div>
             </form>
         </div>

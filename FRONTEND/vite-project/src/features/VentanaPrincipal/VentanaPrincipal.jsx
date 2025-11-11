@@ -1,11 +1,12 @@
 // src/pages/Dashboard.jsx
 import { useState } from 'react';
-import { LayoutDashboard, Package, Users, DollarSign } from 'lucide-react';
+import { ShoppingCart, Package, Users, DollarSign } from 'lucide-react';
+import styles from './VentanaPrincipal.module.css';
 
 // Import de Hooks
 import { useProductos } from '../../hooks/useProductos'; 
-// import { useEmpleados } from '../../hooks/useEmpleados'; 
-// import { useVentas } from '../../hooks/useVentas';
+import { useEmpleados } from '../../hooks/useEmpleados'; 
+import { useVentas } from '../../hooks/useVentas';
 
 // Import de Componentes
 import TabButton from '../../components/TabButton/TabButton'; // Necesitamos este componente
@@ -17,19 +18,21 @@ import ProductosTab from '../Productos/ProductosTab';
 import VentasTab from '../Ventas/VentasTab';
 
 // --- COMPONENTE PRINCIPAL ---
-function Principal() {
+function VentanaPrincipal() {
 
   // 1. Consumimos los hooks necesarios
   const { 
-    productos,
-    createProducto,
-    deleteProducto 
-    // (necesitarás 'updateProducto' también)
-  } = useProductos();
+      productos,
+      producto,
+      getAllProductos,
+      getProductoById,
+      createProducto,
+      deleteProducto
+    } = useProductos();
 
   // 2. Definimos las pestañas como datos
   const tabs = [
-    { id: 'carrito', label: 'Carrito', icon: <LayoutDashboard size={18} /> },
+    { id: 'carrito', label: 'Carrito', icon: <ShoppingCart size={18} /> },
     { id: 'productos', label: 'Productos', icon: <Package size={18} /> },
     { id: 'empleados', label: 'Empleados', icon: <Users size={18} /> },
     { id: 'ventas', label: 'Ventas', icon: <DollarSign size={18} /> },
@@ -39,7 +42,6 @@ function Principal() {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
 
   // 3. Objeto "mapa" para el contenido
-  //    ¡Aquí conectamos los componentes reales!
   const tabContent = {
     carrito: <CarritoTab />,
     productos: (
@@ -47,6 +49,7 @@ function Principal() {
             productos={productos} 
             createProducto={createProducto}
             deleteProducto={deleteProducto}
+            
             // reloadProductos={reloadProductos}
           />),
     empleados: <EmpleadosTab />,
@@ -54,11 +57,11 @@ function Principal() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-      <div className="w-full max-w-6xl bg-white rounded-lg shadow-xl overflow-hidden">
+    <div className={styles.mainPageContainer}>
+      <div className={styles.tabContainer}>
         
         {/* Navegación de Pestañas */}
-        <nav className="flex border-b border-gray-200 bg-gray-50">
+        <nav className={styles.tabNav}>
           {tabs.map((tab) => (
             <TabButton
               key={tab.id}
@@ -71,7 +74,7 @@ function Principal() {
         </nav>
 
         {/* Contenido de la Pestaña Activa */}
-        <main className="p-6 md:p-8 bg-gray-50">
+        <main className={styles.tabContent}>
           {tabContent[activeTab]}
         </main>
         
@@ -80,4 +83,4 @@ function Principal() {
   );
 }
 
-export default Principal;
+export default VentanaPrincipal;

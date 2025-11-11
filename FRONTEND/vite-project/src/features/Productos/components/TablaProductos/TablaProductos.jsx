@@ -3,16 +3,15 @@ import styles from './TablaProductos.module.css'
 export function TablaProductos({ productos, onProductoSelect }) {
     return (
         <div className={styles.tableContainer}>
-            <h3>Inventario</h3>
+            <h3 className={styles.tableTitle}>Inventario</h3>
             <table className={styles.productTable}>
                 <thead className={styles.tableHeader}>
-                    <tr>
-                        <th>Id</th>
+                    <tr className={styles.tableHeaderCell}>
                         <th>Nombre</th>
                         <th>Descripción</th>
                         <th>Stock</th>
-                        <th>Precio Compra</th>
-                        <th>Precio Venta</th>
+                        <th>Precio</th>
+                        <th>Precio de Venta</th>
                     </tr>
                 </thead>
                 <tbody className={styles.tableBody}>

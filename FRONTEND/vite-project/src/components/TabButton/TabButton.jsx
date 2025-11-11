@@ -7,7 +7,7 @@ export const TabButton = ({ label, icon, isActive, onClick}) => {
     return (
         <button
             onClick={onClick}
-            className={`${styles.tabButton} ${isActive ? 'is-active' : ''}`}
+            className={`${styles.tabButton} ${isActive ? styles.isActive : ' '}`}
         >
             {icon}
             <span>{label}</span>

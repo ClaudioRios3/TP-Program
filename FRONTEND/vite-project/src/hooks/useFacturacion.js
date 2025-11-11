@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef, useContext, useCallback } from "react";
 import { AuthContext } from "../auth/AuthContext";
 
-// El nombre del hook empieza con "use"
 export const useFacturacion = () => {
   const { authFetch, logout } = useContext(AuthContext);
   
@@ -16,8 +15,6 @@ export const useFacturacion = () => {
   const [loading, setLoading] = useState({ clientes: true, productos: true });
 
   // 2. Todas las funciones de API (envueltas en useCallback)
-  // Usamos useCallback para que estas funciones no se re-creen en cada render,
-  // a menos que sus dependencias (authFetch, logout) cambien.
 
   const getClientes = useCallback(async () => {
     setLoading(prev => ({ ...prev, clientes: true }));
