@@ -1,52 +1,71 @@
-.form-signin {
-  width: 100%; /* w-100 */
-  max-width: 420px; /* Ancho estándar de 'form-signin' */
+.formLogin {
+  width: 100%;
+  max-width: 300px;
+  padding: 2rem;
+  margin: auto;
+  margin-bottom: 120px;
+
+  background-color: #5a5a5a;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.185);
+  
+}
+
+.loginTitle {
+  margin-bottom: 1rem;
+  margin-top: auto;
+  font-weight: 400;
+  text-align: center;
+}
+
+.formFloating {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.formControl {
+  width: 100%;
   padding: 1rem;
-  margin: auto; /* m-auto */
-  min-height: 80vh; 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  border: 0;
+  border-radius: 6px;
+  box-sizing: border-box;
 }
 
-.form-signin .form-floating:focus-within {
-  z-index: 2;
+.formControl:hover {
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.2);
 }
 
-.form-signin input[type="text"] {
+.formControl:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.5);
+}
+
+.loginButton {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-top: 1rem;
+}
+
+.loginAlert {
+  margin-top: 1rem;
+  color: red; /* Ejemplo */
+}
+
+.formSignin .formControl[type="text"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-.form-signin input[type="password"] {
+.formSignin .formControl[type="password"] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-}
-
-
-/* Define el título
-  Absorbe: 'h3', 'mb-3', 'fw-normal', 'text-center'
-*/
-.login-title {
-  margin-bottom: 1rem; /* mb-3 */
-  font-weight: 400; /* fw-normal */
-  text-align: center; /* text-center */
-}
-
-/* Define el botón
-  Absorbe: 'w-100', 'py-2'
-*/
-.login-button {
-  width: 600px; /* w-100 */
-  padding-top: 0.5rem; /* py-2 */
-  padding-bottom: 0.5rem; /* py-2 */
-}
-
-/* Define la alerta
-  (Solo para añadir un margen superior)
-*/
-.login-alert {
-  margin-top: 1rem;
 }

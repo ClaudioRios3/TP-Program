@@ -18,12 +18,12 @@ function Login() {
   };
 
   return (
-    <main className={styles.formSignin}>
-      <br />
+    <main className={styles.formLogin}>
       <form onSubmit={handleSubmit}>
-        <h3 className={styles.loginTitle}>Acceso al sistema</h3>
+        <h1 className={styles.loginTitle}>Acceso al sistema</h1>
 
         <div className={styles.formFloating}>
+          <label htmlFor="username">Nombre de usuario</label>
           <input
             type="text"
             className={styles.formControl}
@@ -31,13 +31,13 @@ function Login() {
             id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder=""
+            placeholder=" "
             required
           />
-          <label htmlFor="username">Nombre de usuario</label>
         </div>
 
         <div className={styles.formFloating}>
+          <label htmlFor="password">Contraseña</label>
           <input
             type="password"
             className={styles.formControl}
@@ -47,7 +47,6 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <label htmlFor="password">Contraseña</label>
         </div>
 
         <button className={styles.loginButton} type="submit">
